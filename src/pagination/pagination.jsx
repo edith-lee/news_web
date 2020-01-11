@@ -1,10 +1,10 @@
 import React from 'react'
-import { Pagination } from 'antd'
+import { Pagination  } from 'antd'
 export default class myPgination extends React.Component {
     changePage = (current) => {
         let pagination = {
-            total: this.props.paginationnew.total,
-            pageSize: this.props.paginationnew.pageSize,
+            total: this.props.pagination.total,
+            pageSize: this.props.pagination.pageSize,
             current: current,
         }
         this.props.handlePaginationChange(pagination)
@@ -13,14 +13,16 @@ export default class myPgination extends React.Component {
         const props = {
             size: 'small',
             showQuickJumper: true,
-            showTotal: () => `共${this.props.paginationnew.total}条`,
+            //showTotal: () => `共${this.props.pagination.total}条`,
             pageSize: this.props.pagination.pageSize,
             current: this.props.pagination.current,
             total: this.props.pagination.total,
             onChange: (current) => this.changePage(current)
         }
         return (
-            <Pagination {...props}/>
+            <div style={{marginTop:'20px'}}>
+                <Pagination  {...props} />
+            </div>
         )
     }
 }

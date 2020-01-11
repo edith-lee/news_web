@@ -49,7 +49,7 @@ export default class PartyBuild extends React.Component {
         <div style={{ display: "flex" }}>
           <div style={{ width: "25%" }} className='submenu'>
             <div className='submenuTitle'>党建</div>
-            <Menu mode="vertical">{this.renderMenuItem()}</Menu>
+            <Menu mode="vertical" defaultSelectedKeys='/partyBuild/submenu1'>{this.renderMenuItem()}</Menu>
           </div>
           <div style={{ width: "75%" }}>
             <Router>

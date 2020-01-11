@@ -1,7 +1,12 @@
 import React from 'react'
-
+import MyPagination from '../../../pagination/pagination'
 export default class Submenu1 extends React.Component {
     state = {
+        pagination:{
+            total:100,
+            current:1,
+            pageSize:10,
+        },
         articleList: [
             {
                 key: '1',
@@ -55,6 +60,11 @@ export default class Submenu1 extends React.Component {
             },
         ]
     }
+    handlePaginationChange = (pagination) =>{
+        this.setState({
+            pagination
+        })
+    }
     render() {
         return (
             <div>
@@ -67,6 +77,13 @@ export default class Submenu1 extends React.Component {
 
                     })}
                 </div>
+                <div>
+                    <MyPagination  
+                        pagination={this.state.pagination}
+                        handlePaginationChange = {this.handlePaginationChange}
+                    />
+                </div>
+                
             </div>
         )
     }
