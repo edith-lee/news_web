@@ -1,8 +1,8 @@
 import React from "react";
 import menuList from "../../config/menuConfig";
 import { Switch, HashRouter as Router, Route } from "react-router-dom";
-import { Menu } from "antd";
-import { Link } from "react-router-dom";
+import { Menu, Breadcrumb } from "antd";
+import { Link,Redirect } from "react-router-dom";
 export default class PartyBuild extends React.Component {
   renderMenuItem = () => {
     let menu = [];
@@ -12,7 +12,7 @@ export default class PartyBuild extends React.Component {
           menu.push(
             <Menu.Item key={i.key}>
               <Link to={i.key}>
-                <p>{i.title}</p>
+                <div>{i.title}</div>
               </Link>
             </Menu.Item>
           );
@@ -37,15 +37,28 @@ export default class PartyBuild extends React.Component {
   };
   render() {
     return (
-      <div style={{ display: "flex" }}>
-        <div style={{ width: "25%" }}>
-          <div>党建</div>
-          <Menu mode="vertical">{this.renderMenuItem()}</Menu>
+      <div className='contentWrap'>
+        <div className='Breadcrumb'>
+          <Breadcrumb>
+            <Breadcrumb.Item>首页</Breadcrumb.Item>
+            <Breadcrumb.Item>
+              党建
+          </Breadcrumb.Item>
+          </Breadcrumb>
         </div>
-        <div style={{ width: "75%" }}>
-          <Router>
-            <Switch>{this.renderRoute()}</Switch>
-          </Router>
+        <div style={{ display: "flex" }}>
+          <div style={{ width: "25%" }} className='submenu'>
+            <div className='submenuTitle'>党建</div>
+            <Menu mode="vertical">{this.renderMenuItem()}</Menu>
+          </div>
+          <div style={{ width: "75%" }}>
+            <Router>
+              <Switch>
+                {this.renderRoute()}
+                <Redirect to='/partyBuild/submenu1'/>
+                </Switch>
+            </Router>
+          </div>
         </div>
       </div>
     );
