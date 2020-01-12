@@ -1,9 +1,10 @@
 import React from "react";
-import { ARTICLE_LIST } from '../../constants/constants'
-import {  HttpGet } from '../../server/get';
+import { ARTICLE_LIST } from "../../constants/constants";
+import { HttpGet } from "../../server/get";
 export default class PartyBuild extends React.Component {
-  state={
-    list:[
+  state = {
+    tabs: [],
+    list: [
       {
         createby: "1",
         createon: "2020-01-12 09:58:11",
@@ -13,7 +14,8 @@ export default class PartyBuild extends React.Component {
         laiy: "内网",
         mokbs: 4,
         mokbsMc: "十九大",
-        neir: "& lt;div& gt;每天3分钟，速览全国法治新闻& lt;/div& gt;& lt;p& gt;& lt;span& gt;",
+        neir:
+          "& lt;div& gt;每天3分钟，速览全国法治新闻& lt;/div& gt;& lt;p& gt;& lt;span& gt;",
         updateby: "",
         updateon: "",
         wenzbt: "测试党建工作",
@@ -53,23 +55,26 @@ export default class PartyBuild extends React.Component {
         zuoz: "test"
       }
     ]
-  }
-  componentDidMount = () =>{
-    HttpGet(ARTICLE_LIST,{leixbs:1}).then(res=>{
-      console.log(res)
-      if(res.data){
-        let list = []
-        this.setState({
-          list:res.data
-        })
-      }
-    }).catch(err=>{
-      console.log(err)
-    })
+  };
+  componentDidMount = () => {
+    HttpGet(ARTICLE_LIST, { leixbs: 1 })
+      .then(res => {
+        console.log(res);
+        if (res.data) {
+          let list = [];
+          this.setState({
+            list: res.data
+          });
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+  renderTabs = () =>{
+    
   }
   render() {
-    return <div>
-
-    </div>;
+    return <div>{this.renderTabs()}</div>;
   }
 }
