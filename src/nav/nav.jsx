@@ -6,7 +6,7 @@ import { Menu } from "antd";
 import Index from "../view/index/index";
 import "./nav.less";
 import LOGOIMG from "../assets/image/logo.png";
-
+import Article from '../article/article'
 export default class MyIndex extends Component {
   renderMenu = () => {
     return menuList.map(item => {
@@ -63,6 +63,7 @@ export default class MyIndex extends Component {
           <Router>
             <Switch>
               {this.renderRoute()}
+              <Route path="/article/:id" component={Article} />
               <Route path="/" component={Index} />
             </Switch>
           </Router>

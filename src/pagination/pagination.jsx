@@ -17,7 +17,8 @@ export default class myPgination extends React.Component {
             pageSize: this.props.pagination.pageSize,
             current: this.props.pagination.current,
             total: this.props.pagination.total,
-            onChange: (current) => this.changePage(current)
+            onChange: (current) => this.changePage(current),
+            hideOnSinglePage:true
         }
         return (
             <div style={{marginTop:'20px'}}>

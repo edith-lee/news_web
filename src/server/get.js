@@ -1,15 +1,15 @@
 import axios from 'axios'
 
-export function HttpGet(url, token = '') {
+export function HttpGet(url,data) {
     var result = axios({
         method: "GET",
         headers: {
             "pragma": "no-cache",
             'Content-type': 'application/json;charset=UTF-8',
-            'Authorization': token
         },
         url: url,
-        withCredentials: true
+        withCredentials: true,
+        params:data,
     })
     return result
 }

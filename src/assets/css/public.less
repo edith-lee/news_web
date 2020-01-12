@@ -41,6 +41,7 @@
 }
 .articleList{
     .articleListItem{
+        cursor: pointer;
         display: flex;
         justify-content: space-between;
         padding: 5px;
@@ -48,5 +49,83 @@
         a{
             color: #000;
         }
+    }
+}
+.contentWrap2{
+    padding: 30px;
+    .articleListItem{
+        cursor: pointer;
+        //width: 50%;
+        display: flex;
+        height: 120px;
+        border: 1px solid #efefef;
+        padding: 10px;
+        margin: 20px;
+        .time{
+            width: 160px;
+            padding: 15px  20px;
+            .date{
+                width: 100px;
+                line-height: 36px;
+                text-align: center;
+                color: #a1a1a1;
+                font-weight: bold;
+                font-size: 30px;
+            }
+            .year{
+                width: 100px;
+                border-top: solid 1px #eee;
+                line-height: 36px;
+                text-align: center;
+                color: #a1a1a1;
+                font-size: 19px;
+            }
+        }
+        .detail{
+            text-align: left;
+            .title{
+                overflow: hidden;
+                display: -webkit-box;
+                display: block;
+                margin: 0;
+                line-height: 28px;
+                color: #333;
+                font-weight: bold;
+                font-size: 16px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                -webkit-box-orient: vertical;
+            }
+            .cont{
+                overflow: hidden;
+                 margin-top: 5px;
+                 margin-bottom: 5px;
+                line-height: 22px;
+                color: #a6a6a6;
+                font-size: 14px;
+                letter-spacing: 0;
+                height: 60px;
+            }
+        }
+    }
+}
+.articleWrap{
+    padding: 60px 100px 38px 100px;
+    .title{
+        margin: 0;
+        line-height: 48px;
+        text-align: center;
+        font-weight: 400;
+        font-size: 32px;
+    }
+    .time{
+        text-align: right;
+        font-size: 18px;
+        padding: 10px;
+        border-bottom: dotted 1px #e1e1e1;
+    }
+    .content1{
+        text-align: left;
+        padding: 30px 0px;
     }
 }
