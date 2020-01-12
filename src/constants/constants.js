@@ -1,10 +1,8 @@
-const ONLINEBASEURL = 'http://www.luckend.cn:8080'
-const LinkConstant = '/'
+const ONLINEBASEURL = 'http://47.106.70.254:56726'
 
-const LOGIN = `${ONLINEBASEURL}/auth/login${LinkConstant}`
-const LOGIN_OUT = `${ONLINEBASEURL}/auth/logout${LinkConstant}`
+
+const ARTICLE_LIST = `${ONLINEBASEURL}/articles/listAll`
 
 module.exports = {
-    LOGIN: LOGIN,
-    LOGIN_OUT: LOGIN_OUT,
+    ARTICLE_LIST
 }

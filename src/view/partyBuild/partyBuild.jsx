@@ -1,66 +1,75 @@
 import React from "react";
-import menuList from "../../config/menuConfig";
-import { Switch, HashRouter as Router, Route } from "react-router-dom";
-import { Menu, Breadcrumb } from "antd";
-import { Link,Redirect } from "react-router-dom";
+import { ARTICLE_LIST } from '../../constants/constants'
+import {  HttpGet } from '../../server/get';
 export default class PartyBuild extends React.Component {
-  renderMenuItem = () => {
-    let menu = [];
-    menuList.map(item => {
-      if (item.key === "/partyBuild") {
-        item.children.map(i => {
-          menu.push(
-            <Menu.Item key={i.key}>
-              <Link to={i.key}>
-                <div>{i.title}</div>
-              </Link>
-            </Menu.Item>
-          );
-        });
+  state={
+    list:[
+      {
+        createby: "1",
+        createon: "2020-01-12 09:58:11",
+        fabsj: "2020-01-12 09:58:11",
+        fuj: "",
+        id: 1,
+        laiy: "内网",
+        mokbs: 4,
+        mokbsMc: "十九大",
+        neir: "& lt;div& gt;每天3分钟，速览全国法治新闻& lt;/div& gt;& lt;p& gt;& lt;span& gt;",
+        updateby: "",
+        updateon: "",
+        wenzbt: "测试党建工作",
+        zhuangt: 1,
+        zuoz: "test"
+      },
+      {
+        createby: "1",
+        createon: "2020-01-12 09:58:11",
+        fabsj: "2020-01-12 09:58:11",
+        fuj: "",
+        id: 2,
+        laiy: "内网",
+        mokbs: 3,
+        mokbsMc: "十八大",
+        neir: "& lt;div& gt;每天3分钟，",
+        updateby: "",
+        updateon: "",
+        wenzbt: "测试党建工作",
+        zhuangt: 1,
+        zuoz: "test"
+      },
+      {
+        createby: "1",
+        createon: "2020-01-12 09:58:11",
+        fabsj: "2020-01-12 09:58:11",
+        fuj: "",
+        id: 3,
+        laiy: "内网",
+        mokbs: 9,
+        mokbsMc: "十七大",
+        neir: "& lt;div& gt;每天3分钟，",
+        updateby: "",
+        updateon: "",
+        wenzbt: "测试党建工作",
+        zhuangt: 1,
+        zuoz: "test"
       }
-    });
-    console.log(menu);
-    return menu;
-  };
-  renderRoute = () => {
-    let route = [];
-    menuList.map(item => {
-      if (item.key === "/partyBuild") {
-        item.children.map(i => {
-          route.push(
-            <Route exact path={i.key} component={i.component} key={i.key} />
-          );
-        });
+    ]
+  }
+  componentDidMount = () =>{
+    HttpGet(ARTICLE_LIST,{leixbs:1}).then(res=>{
+      console.log(res)
+      if(res.data){
+        let list = []
+        this.setState({
+          list:res.data
+        })
       }
-    });
-    return route;
-  };
+    }).catch(err=>{
+      console.log(err)
+    })
+  }
   render() {
-    return (
-      <div className='contentWrap'>
-        <div className='Breadcrumb'>
-          <Breadcrumb>
-            <Breadcrumb.Item>首页</Breadcrumb.Item>
-            <Breadcrumb.Item>
-              党建
-          </Breadcrumb.Item>
-          </Breadcrumb>
-        </div>
-        <div style={{ display: "flex" }}>
-          <div style={{ width: "25%" }} className='submenu'>
-            <div className='submenuTitle'>党建</div>
-            <Menu mode="vertical" defaultSelectedKeys='/partyBuild/submenu1'>{this.renderMenuItem()}</Menu>
-          </div>
-          <div style={{ width: "75%" }}>
-            <Router>
-              <Switch>
-                {this.renderRoute()}
-                <Redirect to='/partyBuild/submenu1'/>
-                </Switch>
-            </Router>
-          </div>
-        </div>
-      </div>
-    );
+    return <div>
+
+    </div>;
   }
 }

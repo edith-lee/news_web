@@ -5,44 +5,70 @@ import menuList from "../config/menuConfig";
 import { Menu } from "antd";
 import Index from "../view/index/index";
 import "./nav.less";
+import LOGOIMG from "../assets/image/logo.png";
 
 export default class MyIndex extends Component {
   renderMenu = () => {
     return menuList.map(item => {
-      return (
-        <Menu.Item key={item.key}>
-          <Link to={item.key}>
-            <p className="changeFile">{item.title}</p>
-          </Link>
-        </Menu.Item>
-      );
-    });
-  };
-  renderRoute = () => {
-    return menuList.map(item => {
-      if (item.key !== "/") {
+      if (item.children) {
         return (
-          <Route path={item.key} component={item.component} key={item.key} />
+          <Menu.SubMenu title={item.title}>
+            {item.children.map(i => {
+              return (
+                <Menu.Item key={i.key}>
+                  <Link to={i.key}>
+                    <p className="changeFile">{i.title}</p>
+                  </Link>
+                </Menu.Item>
+              );
+            })}
+          </Menu.SubMenu>
+        );
+      } else {
+        return (
+          <Menu.Item key={item.key}>
+            <Link to={item.key}>
+              <p className="changeFile">{item.title}</p>
+            </Link>
+          </Menu.Item>
         );
       }
     });
   };
+  renderRoute = () => {
+    let routes = [];
+    menuList.map(item => {
+      if (item.key !== "/") {
+        if (item.children) {
+          item.children.map(i => {
+            routes.push(
+              <Route path={i.key} component={i.component} key={i.key} />
+            );
+          });
+        } else {
+          routes.push(<Route path={item.key} component={item.component} />);
+        }
+      }
+    });
+    return routes;
+  };
   render() {
     return (
       <div className="routerWrap">
+        <img src={LOGOIMG} className='logoImg'></img>
         <div className="navWrap">
           <Menu mode="horizontal">{this.renderMenu()}</Menu>
         </div>
         <div className="content">
           <Router>
             <Switch>
-                {this.renderRoute()}
-                <Route path='/' component={Index}/>
+              {this.renderRoute()}
+              <Route path="/" component={Index} />
             </Switch>
           </Router>
         </div>
         <div className="footer">
-          <p>Copyright © 2014-2019 Edith. All Rights Reserved.</p>
+          <p>Copyright © 2019-2020 Edith. All Rights Reserved.</p>
         </div>
       </div>
     );
