@@ -1,4 +1,4 @@
-const ONLINEBASEURL = 'http://192.168.1.123:8080'
+const ONLINEBASEURL = window.g.url
 
 
 const ARTICLE_LIST = `${ONLINEBASEURL}/articles/listAll`
