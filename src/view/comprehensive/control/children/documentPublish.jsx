@@ -10,28 +10,20 @@ class DocumentPublish extends React.Component {
             current: 1,
             pageSize: 20,
         },
-        articleList: [
-            {
-                createby: "1",
-                createon: "2020-01-12 09:58:11",
-                fabsj: "2020-01-12 09:58:11",
-                fuj: "",
-                id: 1,
-                laiy: "内网",
-                mokbs: 4,
-                mokbsMc: "十九大",
-                neir: "xx",
-                updateby: "",
-                updateon: "",
-                wenzbt: "测试党建工作",
-                zhuangt: 1,
-                zuoz: "test"
-            },
-        ]
+        articleList: []
     }
     getList =(pagination) =>{
         HttpGet(ARTICLE_LIST_ALL, { leixbs: 12,page:pagination.current,limit:pagination.pageSize }).then(res => {
             console.log(res)
+            let pagination = {
+                current:parseInt(res.page),
+                pageSize:parseInt(res.limit),
+                total:parseInt(res.count)
+            }
+            this.setState({
+                pagination,
+                articleList:res.data
+            })
         }).catch(err=>{
             console.log(err)
         })

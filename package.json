@@ -59,5 +59,9 @@
     "babel-polyfill": "^6.26.0",
     "react-app-rewired": "^1.5.2"
   },
-  "proxy":"http://47.106.70.254"
+  "browserslist": [
+    "last 2 versions",
+    "android 4",
+    "opera 12"
+  ]
 }
