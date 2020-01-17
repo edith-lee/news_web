@@ -16,13 +16,13 @@ class DocumentPublish extends React.Component {
         HttpGet(ARTICLE_LIST_ALL, { leixbs: 12,page:pagination.current,limit:pagination.pageSize }).then(res => {
             console.log(res)
             let pagination = {
-                current:parseInt(res.page),
-                pageSize:parseInt(res.limit),
-                total:parseInt(res.count)
+                current:parseInt(res.data.page),
+                pageSize:parseInt(res.data.limit),
+                total:parseInt(res.data.count)
             }
             this.setState({
                 pagination,
-                articleList:res.data
+                articleList:res.data.data
             })
         }).catch(err=>{
             console.log(err)

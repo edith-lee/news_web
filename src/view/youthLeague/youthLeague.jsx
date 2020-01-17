@@ -12,9 +12,9 @@ export default class PartyBuild extends React.Component {
     HttpGet(MODULE_LIST, { leixbs: 4 })
       .then(res => {
         console.log(res);
-        if (res.success) {
+        if (res.data.success) {
           this.setState({
-            tabs: res.data
+            tabs: res.data.data
           });
         }
       })
@@ -27,8 +27,8 @@ export default class PartyBuild extends React.Component {
     HttpGet(ARTICLE_LIST, { leixbs: module.id })
       .then(res => {
         console.log(res);
-        if (res.success) {
-          res.data.map(item => {
+        if (res.data.success) {
+          res.data.data.map(item => {
             fileList.push(
               <Col key={item.id} className='articleListItem' span={11} onClick={() => { this.props.history.push(`/article/${item.id}`) }}>
                 <div className='time'>

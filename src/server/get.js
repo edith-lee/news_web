@@ -7,7 +7,7 @@ export function HttpGet(url,data) {
             'Content-type': 'application/json;charset=UTF-8',
         },
         url: url,
-        withCredentials: true,
+        //withCredentials: true,
         params:data,
     })
     return result
