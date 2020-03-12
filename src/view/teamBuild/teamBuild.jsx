@@ -24,7 +24,7 @@ export default class PartyBuild extends React.Component {
   };
   renderArticleList = (module) => {
     let fileList = []
-    HttpGet(ARTICLE_LIST, { leixbs: module.id })
+    HttpGet(ARTICLE_LIST, { mokbs: module.id })
       .then(res => {
         console.log(res);
         if (res.data.success) {

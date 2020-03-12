@@ -55,7 +55,8 @@ export default class MyIndex extends Component {
   render() {
     return (
       <div className="routerWrap">
-        <img src={LOGOIMG} className='logoImg'></img>
+        {/* <img src={LOGOIMG} className='logoImg'></img> */}
+    <div className='logoText'>{window.g.logoText}</div>
         <div className="navWrap">
           <Menu mode="horizontal">{this.renderMenu()}</Menu>
         </div>
