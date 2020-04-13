@@ -30,52 +30,56 @@ export default class Index extends React.Component {
                 key: "/employeeStyle",
                 title: '员工风采'
             }
-        ]
+        ],
+        data: []
     }
     view = item => {
         window.location.href = `#/article/${item.id}`
     }
-    renderList = () => {
-        return this.state.list.map(item => {
-            let list = []
+    componentDidMount = () => {
+        this.state.list.map(item => {
             HttpGet(ARTICLE_LIST_ALL, { leixbs: item.id }).then(res => {
-                console.log(res)
-                list = res.data.data
+                let data = this.state.data;
+                data.push({
+                    key: item.id,
+                    value: res.data.data
+                })
+                this.setState(data)
             })
-            if (list.length < 6) {
-                return <Col span={8} key={item.key} style={{ margin: '10px 0px' }}>
-                    <Card title={item.title} extra={<div className='more' onClick={() => { window.location.href = `#${item.key}` }}>更多</div>}>
-                        {list.map(i => {
-                            return <div key={i.id} className='indexFileItem' onClick={() => { this.view(i) }}>
-                                <span>{i.wenzbt}</span>
-                                <div>{i.fabsj ? i.fabsj.slice(0, 10) : ''}</div>
-                            </div>
-                        })}
-
-                    </Card>
-                </Col>
-            } else {
-                let articleList = []
-                for (let i = 0; i < 5; i++) {
-                    articleList.push(<div key={list[i].id}  className='indexFileItem' onClick={() => { this.view(list[i]) }}>
-                        <span>{list[i].wenzbt}</span>
-                        <div>{list[i].fabsj ? list[i].fabsj.slice(0, 10) : ''}</div>
-                    </div>)
+        })
+    }
+    renderList = (id) => {
+        return this.state.data.map(item => {
+            if (item.key == id) {
+                if (item.value.length < 6) {
+                    return item.value.map(i => {
+                        return <div key={i.id} className='indexFileItem' onClick={() => { this.view(i) }}>
+                            <span>{i.wenzbt}</span>
+                            <div>{i.fabsj ? i.fabsj.slice(0, 10) : ''}</div>
+                        </div>
+                    })
+                } else {
+                    for (let i = 0; i < 5; i++) {
+                        return <div key={item.value[i].id} className='indexFileItem' onClick={() => { this.view(item.value[i]) }}>
+                            <span>{item.value[i].wenzbt}</span>
+                            <div>{item.value[i].fabsj ? item.value[i].fabsj.slice(0, 10) : ''}</div>
+                        </div>
+                    }
                 }
-                return <Col span={8} key={item.key} style={{ margin: '10px 0px' }}>
-                    <Card title={item.title} extra={<div className='more' onClick={() => { window.location.href = `#${item.key}` }}>更多</div>}>
-                        {articleList}
-                    </Card>
-                </Col>
             }
-
         })
     }
     render() {
         return (
             <div style={{ padding: '10px' }}>
                 <Row gutter={32}>
-                    {this.renderList()}
+                    {this.state.list.map(item => {
+                        return <Col span={8} key={item.key} style={{ margin: '10px 0px' }}>
+                            <Card title={item.title} extra={<div className='more' onClick={() => { window.location.href = `#${item.key}` }}>更多</div>}>
+                                {this.renderList(item.id)}
+                            </Card>
+                        </Col>
+                    })}
                 </Row>
             </div>
         )
