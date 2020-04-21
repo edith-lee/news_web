@@ -54,15 +54,15 @@ export default class Index extends React.Component {
                 if (item.value.length < 6) {
                     return item.value.map(i => {
                         return <div key={i.id} className='indexFileItem' onClick={() => { this.view(i) }}>
-                            <span>{i.wenzbt}</span>
-                            <div>{i.fabsj ? i.fabsj.slice(0, 10) : ''}</div>
+                            <div className='title'>{i.wenzbt}</div>
+                            <div className='time'>{i.fabsj ? i.fabsj.slice(0, 10) : ''}</div>
                         </div>
                     })
                 } else {
                     for (let i = 0; i < 5; i++) {
                         return <div key={item.value[i].id} className='indexFileItem' onClick={() => { this.view(item.value[i]) }}>
-                            <span>{item.value[i].wenzbt}</span>
-                            <div>{item.value[i].fabsj ? item.value[i].fabsj.slice(0, 10) : ''}</div>
+                            <div className='title'>{item.value[i].wenzbt}</div>
+                            <div className='time'>{item.value[i].fabsj ? item.value[i].fabsj.slice(0, 10) : ''}</div>
                         </div>
                     }
                 }
