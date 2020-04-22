@@ -10,7 +10,7 @@ export default class PartyBuild extends React.Component {
     filelist: [],
   };
   componentDidMount = () => {
-    HttpGet(MODULE_LIST, { leixbs: 1 })
+    HttpGet(MODULE_LIST, { leixbs: 10 })
       .then(res => {
         if (res.data.success) {
           this.setState({
