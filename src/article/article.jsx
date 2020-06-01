@@ -38,10 +38,10 @@ class Article extends Component {
                 <div className='time'><span>{`${this.state.file.zuoz}  ${this.state.file.fabsj}`}</span></div>
                 <div className='content1' dangerouslySetInnerHTML={{ __html: this.state.file.neir }}>
                 </div>
-                <div style={{textAlign:"left"}}>
-                    <p style={{fontSize:16,color:'red',fontWeight:'bold'}}>【附件下载地址】</p>
+                {this.state.file.finalname ? <div style={{ textAlign: "left" }}>
+                    <p style={{ fontSize: 16, color: 'red', fontWeight: 'bold' }}>【附件下载地址】</p>
                     <a target="_blank" href={`${window.g.download}/${this.state.file.finalname}`}><span>{this.state.file.filename}</span></ a>
-                </div>
+                </div> : null}
             </div>
         );
     }
