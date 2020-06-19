@@ -1,20 +1,45 @@
 .routerWrap{
-    background: url('../assets/image/bg.png') no-repeat top center #f3f3f3;
-    padding-top: 90px;
+    .headerWrap{
+        background: url('../assets/image/bg.png') no-repeat top center;
+        height: 630px;
+    }
     .logoImg{
         margin: 0px auto;
         height: 83px;
         width: 370px;
     }
+    .nav{
+        padding: 8px 80px;
+        display: flex;
+        justify-content: space-between;
+    }
     .navWrap{
-        width: 80%;
-        padding-top: 90px;
-        margin:0px auto;
+        width: 45%;
+        text-align: right;
+        .loginBtn{
+            color:#fff;
+            line-height: 45px;
+            width: 60px;
+            text-align: center;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .loginBtn:hover{
+            line-height: 46px;
+            border-bottom: 1px solid #fff;
+        }
         .ant-menu-horizontal{
-            background-color: #02499b;
+            background-color: rgba(0,0,0,0);
+            border-bottom: none;
+        }
+        .ant-menu-horizontal > .ant-menu-item:hover, .ant-menu-horizontal > .ant-menu-submenu:hover, .ant-menu-horizontal > .ant-menu-item-active, .ant-menu-horizontal > .ant-menu-submenu-active, .ant-menu-horizontal > .ant-menu-item-open, .ant-menu-horizontal > .ant-menu-submenu-open, .ant-menu-horizontal > .ant-menu-item-selected, .ant-menu-horizontal > .ant-menu-submenu-selected{
+            color: #fff;
+            border-bottom: 1px solid #fff;
         }
         .ant-menu-item{
-            width: 10%;
+            width: 70px;
+            padding: 0px;
+            text-align: center;
         }
         .changeFile{
             color: #fff;
@@ -26,17 +51,25 @@
     .content{
         min-height: calc(100vh - 382px);
         //overflow:scroll;
-        width: 80%;
+        width: 100%;
         margin:0px auto;
         background-color: #fff;
     }
     .footer{
         padding: 20px;
+        background-color: #f3f3f3;
     }
     .logoText{
-        color: rgba(0,87,177,0.8);
+        margin-top: 180px;
+        color: #FFF;
         font-size:30px;
         font-weight: 500;
-        letter-spacing: 18px;
+        letter-spacing: 16px;
+        .welcome{
+            font-size:80px;
+            letter-spacing: 4px;
+            font-weight: bold;
+            color:#CCD2CB;
+        }
     }
 }

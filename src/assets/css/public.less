@@ -51,8 +51,28 @@
         }
     }
 }
+.time2{
+    width: 160px;
+    padding: 15px  20px;
+    .date{
+        width: 100px;
+        line-height: 36px;
+        text-align: center;
+        color: #a1a1a1;
+        font-weight: bold;
+        font-size: 30px;
+    }
+    .year{
+        width: 100px;
+        border-top: solid 1px #eee;
+        line-height: 36px;
+        text-align: center;
+        color: #a1a1a1;
+        font-size: 19px;
+    }
+}
 .contentWrap2{
-    padding: 30px;
+    padding: 20px  15%;
     .articleListItem{
         overflow: hidden;
         cursor: pointer;
@@ -139,22 +159,53 @@
 }
 .more{
     cursor: pointer;
-    color: #02499b;
+    color: #CA1616;
+    font-size: 14px;
+    text-decoration:underline;
 }
 .indexFileItem{
     display:flex;
     justify-content:space-between;
-    font-size: 18px;
+    font-size: 16px;
+    line-height: 35px;
+    .circle{
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background-color: #CA1616;
+        margin:12px 10px;
+    }
     .title{
         overflow: hidden;
         text-overflow:ellipsis;
         white-space: nowrap;
+        width: 245px;
+        color: #333333;
     }
+
     .time{
         min-width:110px;
+        color: #999999;
     }
 }
 .indexFileItem:hover{
     cursor: pointer;
     color: #02499b;
+}
+.indexFileItem1{
+    display:flex;
+    justify-content:space-between;
+    font-size: 16px;
+    line-height: 35px;
+    .title{
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+        width:135px;
+        color: #333333;
+    }
+    .time{
+        min-width:110px;
+        color: #999999;
+    }
 }

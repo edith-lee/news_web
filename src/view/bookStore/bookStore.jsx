@@ -16,10 +16,10 @@ export default class PartyBuild extends React.Component {
           this.setState({
             tabs: res.data.data
           });
-          res.data.data.map(i=>{
+          res.data.data.map(i => {
             this.getFilelist(i)
           })
-          
+
         }
       })
       .catch(err => {
@@ -48,14 +48,18 @@ export default class PartyBuild extends React.Component {
       if (i.key === module.id) {
         return i.value.map(item => {
           return <Col key={item.id} className='articleListItem' span={11} onClick={() => { this.props.history.push(`/article/${item.id}`) }}>
-            <div className='time'>
-              <div className='date'>
-                {item.fabsj ? item.fabsj.slice(8, 10) : ''}
+            {item.slt ?
+              <div style={{ minWidth: '140px', height: '100%', width: '140px', marginRight: 20 }}>
+                <img src={item.slt} alt='' style={{ width: '100%', height: '100%' }}></img>
               </div>
-              <div className='year'>
-                {item.fabsj ? item.fabsj.slice(0, 7) : ''}
-              </div>
-            </div>
+              : <div className='time'>
+                <div className='date'>
+                  {item.fabsj ? item.fabsj.slice(8, 10) : ''}
+                </div>
+                <div className='year'>
+                  {item.fabsj ? item.fabsj.slice(0, 7) : ''}
+                </div>
+              </div>}
             <div className='detail'>
               <div className='title'>
                 {item.wenzbt}

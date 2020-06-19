@@ -5,7 +5,6 @@ import menuList from "../config/menuConfig";
 import { Menu } from "antd";
 import Index from "../view/index/index";
 import "./nav.less";
-import LOGOIMG from "../assets/image/logo.png";
 import Article from '../article/article'
 export default class MyIndex extends Component {
   renderMenu = () => {
@@ -56,9 +55,19 @@ export default class MyIndex extends Component {
     return (
       <div className="routerWrap">
         {/* <img src={LOGOIMG} className='logoImg'></img> */}
-    <div className='logoText'>{window.g.logoText}</div>
-        <div className="navWrap">
-          <Menu mode="horizontal">{this.renderMenu()}</Menu>
+        <div className='headerWrap'>
+          <div className='nav'>
+            <div>
+            </div>
+            <div className="navWrap" style={{display:'flex'}}>
+              <Menu mode="horizontal">{this.renderMenu()}</Menu>
+              <div className='loginBtn'><a href="http://120.79.202.38:10012" style={{color:'#fff'}}>登录</a></div>
+            </div>
+          </div>
+          <div className='logoText'>
+            <p className='welcome'>WELCOME</p>
+            {window.g.logoText}
+          </div>
         </div>
         <div className="content">
           <Router>
