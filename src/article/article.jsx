@@ -21,7 +21,6 @@ class Article extends Component {
         }
     }
     componentDidMount = () => {
-        console.log(this.props.match.params.id)
         HttpGet(ARTICLE_GETONE, { id: this.props.match.params.id }).then(res => {
             console.log(res)
             this.setState({

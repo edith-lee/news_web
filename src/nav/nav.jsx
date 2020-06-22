@@ -6,6 +6,7 @@ import { Menu } from "antd";
 import Index from "../view/index/index";
 import "./nav.less";
 import Article from '../article/article'
+import LogoImg from "../assets/image/logo.png"
 export default class MyIndex extends Component {
   renderMenu = () => {
     return menuList.map(item => {
@@ -54,10 +55,11 @@ export default class MyIndex extends Component {
   render() {
     return (
       <div className="routerWrap">
-        {/* <img src={LOGOIMG} className='logoImg'></img> */}
+        
         <div className='headerWrap'>
           <div className='nav'>
             <div>
+              <img src={LogoImg} className='logoImg'></img>
             </div>
             <div className="navWrap" style={{display:'flex'}}>
               <Menu mode="horizontal">{this.renderMenu()}</Menu>
