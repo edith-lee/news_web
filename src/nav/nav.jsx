@@ -55,15 +55,15 @@ export default class MyIndex extends Component {
   render() {
     return (
       <div className="routerWrap">
-        
+
         <div className='headerWrap'>
           <div className='nav'>
             <div>
               <img src={LogoImg} className='logoImg'></img>
             </div>
-            <div className="navWrap" style={{display:'flex'}}>
+            <div className="navWrap" style={{ display: 'flex' }}>
               <Menu mode="horizontal">{this.renderMenu()}</Menu>
-              <div className='loginBtn'><a href="http://120.79.202.38:10012" style={{color:'#fff'}}>登录</a></div>
+              <div className='loginBtn'><a href="http://120.79.202.38:10012" style={{ color: '#fff' }}>登&nbsp;录</a></div>
             </div>
           </div>
           <div className='logoText'>
@@ -81,7 +81,7 @@ export default class MyIndex extends Component {
           </Router>
         </div>
         <div className="footer">
-          <p>Copyright © 2019-2020 Edith. All Rights Reserved.</p>
+          <p>Copyright © 2019-2020 {window.g.copyright}</p>
         </div>
       </div>
     );

@@ -21,7 +21,7 @@ import LaborHealth from '../view/comprehensive/laborHealth/laborHealth';
 import EmployeeStyle from '../view/employeeStyle/employeeStyle';
 
 const menuList = [
-  { title: "首页", key: "/", component: Index },
+  { title: "首\t\t页", key: "/", component: Index },
   {
     title: "党建管理",
     key: "/partyBuild",

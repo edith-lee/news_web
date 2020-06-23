@@ -100,7 +100,7 @@ export default class Index extends React.Component {
                                         })}
                                     </div>
                                     <div style={{ textAlign: 'right', backgroundColor: '#f3f3f3', padding: '10px' }}>
-                                        <div className='more' onClick={() => { window.location.href = `#/teamBuild` }}>更多</div>
+                                        <div className='more' onClick={() => { window.location.href = `#/partyBuild` }}>更多</div>
                                     </div>
                                 </div>
                             </div>

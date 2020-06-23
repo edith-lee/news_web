@@ -4,7 +4,7 @@
         height: 630px;
     }
     .logoImg{
-        margin-left: 300px;
+        //margin-left: 300px;
         height: 82px;
         width: 82px;
     }
@@ -14,28 +14,37 @@
         justify-content: space-between;
     }
     .navWrap{
-        width: 45%;
+        width: 60%;
         text-align: right;
         .loginBtn{
             color:#fff;
             line-height: 45px;
-            width: 60px;
+            width: 70px;
             text-align: center;
             font-size: 14px;
             height: 48px;
+            margin-top: 10px;
             cursor: pointer;
         }
         .loginBtn:hover{
              line-height: 46px;
-            border-bottom: 1px solid #fff;
+            border-bottom: 2px solid #fff;
+        }
+        .ant-menu{
+            //font-size: 20px;
+            margin-top: 10px;
         }
         .ant-menu-horizontal{
             background-color: rgba(0,0,0,0);
             border-bottom: none;
         }
+        
         .ant-menu-horizontal > .ant-menu-item:hover, .ant-menu-horizontal > .ant-menu-submenu:hover, .ant-menu-horizontal > .ant-menu-item-active, .ant-menu-horizontal > .ant-menu-submenu-active, .ant-menu-horizontal > .ant-menu-item-open, .ant-menu-horizontal > .ant-menu-submenu-open, .ant-menu-horizontal > .ant-menu-item-selected, .ant-menu-horizontal > .ant-menu-submenu-selected{
             color: #fff;
             border-bottom: 1px solid #fff;
+        }
+        .ant-menu-item, .ant-menu-submenu-title{
+            padding: 0px 7px;
         }
         .ant-menu-item{
             width: 70px;
