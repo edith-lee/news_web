@@ -68,7 +68,7 @@ export default class Index extends React.Component {
                                         if (i.key == 1) {
                                             return i.value.map((item, index) => {
                                                 if (index == 0) {
-                                                    return <div onClick={() => { this.view(item) }}>
+                                                    return <div onClick={() => { this.view(item) }} style={{cursor:'pointer'}}>
                                                         <div className='img' >
                                                             <img src={item.slt ? item.slt : TestImg} alt="" style={{ width: "100%", height: '100%' }} />
                                                         </div>
@@ -145,7 +145,7 @@ export default class Index extends React.Component {
                                         if (i.key == 2) {
                                             return i.value.map((item, index) => {
                                                 if (index == 0) {
-                                                    return <div onClick={() => { this.view(item) }}>
+                                                    return <div onClick={() => { this.view(item) }} style={{cursor:'pointer'}}>
                                                         <div className='img' >
                                                             <img src={item.slt ? item.slt : TestImg} alt="" style={{ width: "100%", height: '100%' }} />
                                                         </div>
@@ -248,7 +248,7 @@ export default class Index extends React.Component {
                                         if (i.key == 3) {
                                             return i.value.map((item, index) => {
                                                 if (index == 0) {
-                                                    return <div onClick={() => { this.view(item) }}>
+                                                    return <div onClick={() => { this.view(item) }} style={{cursor:'pointer'}}>
                                                         <div className='img' >
                                                             <img src={item.slt ? item.slt : TestImg} alt="" style={{ width: "100%", height: '100%' }} />
                                                         </div>
@@ -325,7 +325,7 @@ export default class Index extends React.Component {
                                         if (i.key == 4) {
                                             return i.value.map((item, index) => {
                                                 if (index == 0) {
-                                                    return <div onClick={() => { this.view(item) }}>
+                                                    return <div onClick={() => { this.view(item) }} style={{cursor:'pointer'}}>
                                                         <div className='img' >
                                                             <img src={item.slt ? item.slt : TestImg} alt="" style={{ width: "100%", height: '100%' }} />
                                                         </div>
