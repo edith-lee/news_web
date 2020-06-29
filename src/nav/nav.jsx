@@ -63,7 +63,7 @@ export default class MyIndex extends Component {
             </div>
             <div className="navWrap" style={{ display: 'flex' }}>
               <Menu mode="horizontal">{this.renderMenu()}</Menu>
-              <div className='loginBtn'><a href="http://120.79.202.38:10012" style={{ color: '#fff' }}>登&nbsp;录</a></div>
+              <div className='loginBtn'><a href="http://120.79.202.38:10012" style={{ color: '#fff' }}>系统登录</a></div>
             </div>
           </div>
           <div className='logoText'>
