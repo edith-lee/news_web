@@ -19,7 +19,7 @@ import RetailRepair from '../view/comprehensive/projectManage/children/retailRep
 import SelfSupport from '../view/comprehensive/projectManage/children/selfSupport';
 import LaborHealth from '../view/comprehensive/laborHealth/laborHealth';
 import EmployeeStyle from '../view/employeeStyle/employeeStyle';
-
+import Ctree from "../view/tree/tree"
 const menuList = [
   { title: "门户首页", key: "/", component: Index },
   {
@@ -47,81 +47,81 @@ const menuList = [
     key: "/teamBuild",
     component: TeamBuild,
   },
+  // {
+  //   title: "电子书屋",
+  //   key: "/bookStore",
+  //   component: BookStore,
+  // },
   {
-    title: "电子书屋",
-    key: "/bookStore",
-    component: BookStore,
-  },
-  {
-    title: "综合业务",
+    title: "文档管理",
     key: "/comprehensive",
-    component: Comprehensive,
-    children: [
-      {
-        title: "车辆管理",
-        key: "/comprehensive/vehicleManage",
-        component: VehicleManage
-      },
-      {
-        title: "司驾人员管理",
-        key: "/comprehensive/driverManage",
-        component: DriverManage
-      },
-      {
-        title: "车辆油耗管理",
-        key: "/comprehensive/oilManage",
-        component: OilManage
-      },
-      {
-        title: "综合治理",
-        key: "/comprehensive/control",
-        component: Control,
-        children2:[
-          {
-            title: "文件宣传",
-            key: "/comprehensive/control/documentPublish",
-            component: DocumentPublish
-          },
-          {
-            title: "舆情管理",
-            key: "/comprehensive/control/opinionManage",
-            component: OpinionManage
-          },
-        ]
-      },
-      {
-        title: "工程管理",
-        key: "/comprehensive/projectManage",
-        component: ProjectManage,
-        children2:[
-          {
-            title: "专项工程管理",
-            key: "/comprehensive/projectManage/specialProject",
-            component: SpecialProject
-          },
-          {
-            title: "修理费工程",
-            key: "/comprehensive/projectManage/repairCost",
-            component: RepairCost
-          },
-          {
-            title: "零星维修工程",
-            key: "/comprehensive/projectManage/retailRepair",
-            component: RetailRepair
-          },
-          {
-            title: "自营工程",
-            key: "/comprehensive/projectManage/selfSupport",
-            component: SelfSupport
-          },
-        ]
-      },
-      {
-        title: "劳动保护与职业健康",
-        key: "/comprehensive/laborHealth",
-        component: LaborHealth
-      }
-    ]
+    component: Ctree,
+    // children: [
+    //   {
+    //     title: "车辆管理",
+    //     key: "/comprehensive/vehicleManage",
+    //     component: VehicleManage
+    //   },
+    //   {
+    //     title: "司驾人员管理",
+    //     key: "/comprehensive/driverManage",
+    //     component: DriverManage
+    //   },
+    //   {
+    //     title: "车辆油耗管理",
+    //     key: "/comprehensive/oilManage",
+    //     component: OilManage
+    //   },
+    //   {
+    //     title: "综合治理",
+    //     key: "/comprehensive/control",
+    //     component: Control,
+    //     children2:[
+    //       {
+    //         title: "文件宣传",
+    //         key: "/comprehensive/control/documentPublish",
+    //         component: DocumentPublish
+    //       },
+    //       {
+    //         title: "舆情管理",
+    //         key: "/comprehensive/control/opinionManage",
+    //         component: OpinionManage
+    //       },
+    //     ]
+    //   },
+    //   {
+    //     title: "工程管理",
+    //     key: "/comprehensive/projectManage",
+    //     component: ProjectManage,
+    //     children2:[
+    //       {
+    //         title: "专项工程管理",
+    //         key: "/comprehensive/projectManage/specialProject",
+    //         component: SpecialProject
+    //       },
+    //       {
+    //         title: "修理费工程",
+    //         key: "/comprehensive/projectManage/repairCost",
+    //         component: RepairCost
+    //       },
+    //       {
+    //         title: "零星维修工程",
+    //         key: "/comprehensive/projectManage/retailRepair",
+    //         component: RetailRepair
+    //       },
+    //       {
+    //         title: "自营工程",
+    //         key: "/comprehensive/projectManage/selfSupport",
+    //         component: SelfSupport
+    //       },
+    //     ]
+    //   },
+    //   {
+    //     title: "劳动保护与职业健康",
+    //     key: "/comprehensive/laborHealth",
+    //     component: LaborHealth
+    //   }
+    // ]
   },
   {
     title: "员工风采",
