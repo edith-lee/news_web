@@ -46,7 +46,7 @@ export default class MyIndex extends Component {
             );
           });
         } else {
-          routes.push(<Route path={item.key} component={item.component} />);
+          routes.push(<Route path={item.key} component={item.component} key={item.key}/>);
         }
       }
     });
