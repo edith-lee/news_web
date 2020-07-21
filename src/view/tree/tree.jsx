@@ -12,57 +12,8 @@ class CTree extends React.Component {
       total: 0,
       current: 1
     },
-    treeData: [
-      {
-        title: "宁夏煤业有限责任公司",
-        nodeid: "0",
-        key: "0",
-        children: [
-          {
-            title: "一级目录",
-            nodeid: "1284079056324784130",
-            key: "1284079056324784130",
-            children: [
-              {
-                title: "二级目录",
-                nodeid: "1284079206271152129",
-                key: "1284079206271152129",
-                children: [
-                  {
-                    title: "三级",
-                    nodeid: "1284081924444295170",
-                    key: "1284081924444295170"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    dataSource: [
-      {
-        key: 1,
-        filename: "文件名称啦啦啦啦",
-        author: "张三",
-        createTime: "2020-07-18 10:22:49",
-        remark: "备注几局几句军军军军军"
-      },
-      {
-        key: 2,
-        filename: "文件名称啦啦啦啦",
-        author: "张三",
-        createTime: "2020-07-18 10:22:49",
-        remark: "备注几局几句军军军军军"
-      },
-      {
-        key: 3,
-        filename: "文件名称啦啦啦啦",
-        author: "张三",
-        createTime: "2020-07-18 10:22:49",
-        remark: "备注几局几句军军军军军"
-      }
-    ]
+    treeData: [],
+    dataSource: []
   };
   columns = [
     {
@@ -76,13 +27,15 @@ class CTree extends React.Component {
       dataIndex: "fileName",
       key: "fileName",
       render: (text, record) => (
-        <a href={`${record.path}`} target="__blank">{record.fileName}</a>
+        <a href={record.path} download="" target="_blank">
+          {record.fileName}
+        </a>
       )
     },
     {
       title: "作者",
-      dataIndex: "updateUser",
-      key: "updateUser"
+      dataIndex: "userName",
+      key: "userName"
     },
     {
       title: "创建时间",
@@ -95,16 +48,13 @@ class CTree extends React.Component {
       key: "memo"
     }
   ];
-  firstId = "";
   componentDidMount = () => {
     HttpGet(TREE_LIST).then(res => {
       if (res.data) {
         this.convertTree(res.data);
         this.setState(
           {
-            treeData: res.data,
-            currentKey: this.firstId,
-            selectedKeys: [this.firstId]
+            treeData: res.data
           },
           () => {
             this.getTableData();
@@ -121,11 +71,11 @@ class CTree extends React.Component {
       ...this.state.search
     }).then(res => {
       let pagination = this.state.pagination;
-      pagination.total = res.data.count; 
+      pagination.total = res.data.count;
       this.setState({
-        dataSource:res.data.data,
+        dataSource: res.data.data,
         pagination
-      })
+      });
     });
   };
   convertTree = treeData => {
@@ -134,30 +84,30 @@ class CTree extends React.Component {
       delete item.disabled;
       if (item.children.length !== 0) {
         this.convertTree(item.children);
-      } else if (this.firstId == "") {
-        this.firstId = item.id;
       }
     });
   };
+  // onExpand = (keys,event) =>{
+  //   console.log(event)
+  // }
   onSelect = (keys, event) => {
-    if (event.node.props.children.length == 0) {
-      this.props.form.resetFields();
-      this.setState(
-        {
-          selectedKeys: keys,
-          currentKey: keys[0],
-          search: {},
-          pagination: {
-            pageSize: 10,
-            total: 0,
-            current: 1
-          }
-        },
-        () => {
-          this.getTableData();
+    console.log(event);
+    this.props.form.resetFields();
+    this.setState(
+      {
+        selectedKeys: keys,
+        currentKey: keys[0],
+        search: {},
+        pagination: {
+          pageSize: 10,
+          total: 0,
+          current: 1
         }
-      );
-    }
+      },
+      () => {
+        this.getTableData();
+      }
+    );
   };
   handleSubmit = () => {
     let search = this.props.form.getFieldsValue();
