@@ -1,14 +1,15 @@
 import React from "react";
 import "./tree.less";
 import { Tree, Form, Input, Button, Table } from "antd";
-
+import { TREE_LIST, TABLE_LIST } from "../../constants/constants";
+import { HttpGet } from "../../server/get";
 const { TreeNode, DirectoryTree } = Tree;
 class CTree extends React.Component {
   state = {
     search: {},
     pagination: {
       pageSize: 10,
-      total: 100,
+      total: 0,
       current: 1
     },
     treeData: [
@@ -72,14 +73,16 @@ class CTree extends React.Component {
     },
     {
       title: "文件名称",
-      dataIndex: "filename",
-      key: "namfilename",
-      render: (text, record) => <a href={`${window.g.download}/${record.fileurl}`}>{record.filename}</a>
+      dataIndex: "fileName",
+      key: "fileName",
+      render: (text, record) => (
+        <a href={`${record.path}`} target="__blank">{record.fileName}</a>
+      )
     },
     {
       title: "作者",
-      dataIndex: "author",
-      key: "author"
+      dataIndex: "updateUser",
+      key: "updateUser"
     },
     {
       title: "创建时间",
@@ -88,22 +91,86 @@ class CTree extends React.Component {
     },
     {
       title: "备注",
-      dataIndex: "remark",
-      key: "remark"
+      dataIndex: "memo",
+      key: "memo"
     }
   ];
+  firstId = "";
+  componentDidMount = () => {
+    HttpGet(TREE_LIST).then(res => {
+      if (res.data) {
+        this.convertTree(res.data);
+        console.log(this.firstId);
+        this.setState(
+          {
+            treeData: res.data,
+            currentKey: this.firstId,
+            selectedKeys: [this.firstId]
+          },
+          () => {
+            this.getTableData();
+          }
+        );
+      }
+    });
+  };
+  getTableData = () => {
+    HttpGet(TABLE_LIST, {
+      //cataId: this.state.currentKey,
+      page: this.state.pagination.current,
+      limit: this.state.pagination.pageSize,
+      ...this.state.search
+    }).then(res => {
+      console.log(res);
+      let pagination = this.state.pagination;
+      pagination.total = res.data.count; 
+      this.setState({
+        dataSource:res.data.data,
+        pagination
+      })
+    });
+  };
+  convertTree = treeData => {
+    treeData.forEach(item => {
+      item.key = item.id;
+      delete item.disabled;
+      if (item.children.length !== 0) {
+        this.convertTree(item.children);
+      } else if (this.firstId == "") {
+        this.firstId = item.id;
+      }
+    });
+  };
   onSelect = (keys, event) => {
     if (event.node.props.children.length == 0) {
-      console.log(keys[0]);
-      // 点击左侧树节点调用接口
+      this.props.form.resetFields();
+      this.setState(
+        {
+          selectedKeys: keys,
+          currentKey: keys[0],
+          search: {},
+          pagination: {
+            pageSize: 10,
+            total: 0,
+            current: 1
+          }
+        },
+        () => {
+          this.getTableData();
+        }
+      );
     }
   };
   handleSubmit = () => {
     let search = this.props.form.getFieldsValue();
-    console.log(search);
-    this.setState({
-      search
-    });
+    this.setState(
+      {
+        search
+      },
+      () => {
+        this.getTableData();
+      }
+    );
     // 搜索接口
   };
   onPageChange = current => {
@@ -111,9 +178,14 @@ class CTree extends React.Component {
     let pagination = this.state.pagination;
     pagination.current = current;
     // 翻页接口
-    this.setState({
-      pagination
-    });
+    this.setState(
+      {
+        pagination
+      },
+      () => {
+        this.getTableData();
+      }
+    );
   };
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -122,6 +194,7 @@ class CTree extends React.Component {
         <div className="treeWrap">
           <DirectoryTree
             defaultExpandAll
+            selectedKeys={this.state.selectedKeys}
             onSelect={this.onSelect}
             onExpand={this.onExpand}
             treeData={this.state.treeData}
@@ -130,7 +203,7 @@ class CTree extends React.Component {
         <div className="tableWrap">
           <Form layout="inline" onSubmit={this.handleSubmit}>
             <Form.Item label="关键字">
-              {getFieldDecorator("keyword", {})(<Input />)}
+              {getFieldDecorator("condition", {})(<Input />)}
             </Form.Item>
             <Form.Item>
               <Button type="primary" htmlType="submit">
@@ -141,6 +214,7 @@ class CTree extends React.Component {
           <div className="myTable">
             <Table
               bordered
+              rowKey={"id"}
               dataSource={this.state.dataSource}
               columns={this.columns}
               pagination={{

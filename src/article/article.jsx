@@ -21,6 +21,7 @@ class Article extends Component {
         }
     }
     componentDidMount = () => {
+        document.documentElement.scrollTop = 0;
         HttpGet(ARTICLE_GETONE, { id: this.props.match.params.id }).then(res => {
             console.log(res)
             this.setState({

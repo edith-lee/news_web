@@ -3,6 +3,8 @@ import { Row, Col, Card } from "antd";
 import { HttpGet } from "../../server/get";
 import { ARTICLE_LIST_ALL } from "../../constants/constants";
 import "./index.less";
+import Swiper from "swiper/swiper-bundle.js";
+import "swiper/swiper-bundle.min.css";
 import TestImg from "../../assets/image/test.png";
 export default class Index extends React.Component {
   state = {
@@ -54,9 +56,20 @@ export default class Index extends React.Component {
         this.setState(data);
       });
     });
+    new Swiper(".swiper-container", {
+      loop: true, //循环
+      autoplay: {
+        //滑动后继续播放（不写官方默认暂停）
+        disableOnInteraction: false
+      },
+      slidesPerView: 3,
+      spaceBetween: 10,
+      observer: true,
+      observeParents: true,
+      observeSlideChildren: true
+    });
   };
   render() {
-    console.log(window.g.index);
     return (
       <div>
         {window.g.index.map(t => {
@@ -286,7 +299,52 @@ export default class Index extends React.Component {
                     更多
                   </div>
                 </div>
-                <Row gutter={16}>
+                <div className="swiper-container">
+                  <div className="swiper-wrapper">
+                    {this.state.data.map(i => {
+                      if (i.key == 20) {
+                        return i.value.map((item, index) => {
+                          return (
+                            <div
+                              className="swiper-slide"
+                              style={{ cursor: "pointer" }}
+                              onClick={() => {
+                                this.view(item);
+                              }}
+                            >
+                              <div className="item-Image">
+                                <img
+                                  src={item.slt ? item.slt : TestImg}
+                                  alt=""
+                                  style={{ width: "100%", height: "100%" }}
+                                />
+                              </div>
+                              <p className="name">{item.wenzbt}</p>
+                            </div>
+                            // <Col
+                            //   span={8}
+                            //   key={index}
+                            //   onClick={() => {
+                            //     this.view(item);
+                            //   }}
+                            //   style={{ cursor: "pointer" }}
+                            // >
+                            //   <div className="item-Image">
+                            //     <img
+                            //       src={item.slt ? item.slt : TestImg}
+                            //       alt=""
+                            //       style={{ width: "100%", height: "100%" }}
+                            //     />
+                            //   </div>
+                            //   <p className="name">{item.wenzbt}</p>
+                            // </Col>
+                          );
+                        });
+                      }
+                    })}
+                  </div>
+                </div>
+                {/* <Row gutter={16}>
                   {this.state.data.map(i => {
                     if (i.key == 20) {
                       return i.value.map((item, index) => {
@@ -314,7 +372,7 @@ export default class Index extends React.Component {
                       });
                     }
                   })}
-                </Row>
+                </Row> */}
               </Row>
             );
           }
