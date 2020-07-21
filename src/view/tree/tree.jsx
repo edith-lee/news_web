@@ -100,7 +100,6 @@ class CTree extends React.Component {
     HttpGet(TREE_LIST).then(res => {
       if (res.data) {
         this.convertTree(res.data);
-        console.log(this.firstId);
         this.setState(
           {
             treeData: res.data,
@@ -116,12 +115,11 @@ class CTree extends React.Component {
   };
   getTableData = () => {
     HttpGet(TABLE_LIST, {
-      //cataId: this.state.currentKey,
+      cataId: this.state.currentKey,
       page: this.state.pagination.current,
       limit: this.state.pagination.pageSize,
       ...this.state.search
     }).then(res => {
-      console.log(res);
       let pagination = this.state.pagination;
       pagination.total = res.data.count; 
       this.setState({
@@ -174,7 +172,6 @@ class CTree extends React.Component {
     // 搜索接口
   };
   onPageChange = current => {
-    console.log(current);
     let pagination = this.state.pagination;
     pagination.current = current;
     // 翻页接口
