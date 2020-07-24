@@ -43,6 +43,11 @@ class CTree extends React.Component {
       key: "createTime"
     },
     {
+      title: "所属文件夹",
+      dataIndex: "cata",
+      key: "cata"
+    },
+    {
       title: "备注",
       dataIndex: "memo",
       key: "memo"
