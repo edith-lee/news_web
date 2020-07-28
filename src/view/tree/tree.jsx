@@ -150,15 +150,16 @@ class CTree extends React.Component {
             onSelect={this.onSelect}
             onExpand={this.onExpand}
             treeData={this.state.treeData}
+            style={{marginTop:10}}
           ></DirectoryTree>
         </div>
         <div className="tableWrap">
-          <Form layout="inline" onSubmit={this.handleSubmit}>
+          <Form layout="inline">
             <Form.Item label="关键字">
               {getFieldDecorator("condition", {})(<Input />)}
             </Form.Item>
             <Form.Item>
-              <Button type="primary" htmlType="submit">
+              <Button onClick={this.handleSubmit}>
                 搜索
               </Button>
             </Form.Item>
@@ -174,7 +175,6 @@ class CTree extends React.Component {
                 ...this.state.pagination
               }}
             />
-            ;
           </div>
         </div>
       </div>
